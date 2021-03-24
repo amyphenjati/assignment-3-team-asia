@@ -9,8 +9,15 @@
 <body>
     <h1>MBTA HELPER</h1>
     <br>
-    <h2>hello, we will help you find the nearest MBTA station</h2>
+    <h2>hello, we will help you find the nearest MBTA station </h2>
     <a href="{{ url_for('get_stop') }}">Find the closest Station</a>
+    <form method="POST" name="">
+        <p>Please enter your current location:</p>
+        <p> 
+        <input type="text" size="4" name="location" />
+        </p>
+        <p>
+        <input type="submit" value="Submit" />
 
 </body>
 </html>
