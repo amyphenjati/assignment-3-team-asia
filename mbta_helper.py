@@ -46,17 +46,7 @@ def get_lat_long(place_name):
     lat = data_latlng["lat"]
     lng = data_latlng["lng"]
     return lat, lng
-    ### found another way BUT I DONT UNDERSTAND IT
-    # parsed = {'key' : MAPQUEST_API_KEY, 'location' : place_name}
-    # parsed_url = urllib.parse.urlencode(parsed)
-    # print (parsed_url) #just to test if it looks alright
-    # url = f'http://www.mapquestapi.com/geocoding/v1/address?{parsed_url}'
-    # print(url) # to check if it has correct format
-    # f = urllib.request.urlopen(url)
-    # response_text = f.read().decode('utf-8')
-    # response_data = json.loads(response_text)
-    # pprint(response_data)
-    # return response_data["results"][0]["locations"][0]['displayLatLng']
+
 
 
 ### Write a function that takes a latitude and longitude and returns the name of the closest MBTA stop and whether it is wheelchair accessible. ###
@@ -110,7 +100,7 @@ def main():
     # url = f"{MAPQUEST_BASE_URL}?key={MAPQUEST_API_KEY}&location=Babson%20College"
     # print(get_json(url))
     location = input("Please enter a place:")
-    print(get_lat_long(location))
+    # print(get_lat_long(location))
     print(get_nearest_station(42.29822, -71.2654))  # babson college
     print(find_stop_near(location))
 
