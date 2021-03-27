@@ -69,7 +69,7 @@ def get_nearest_station(latitude, longitude):
         wheel_chair = "Accessible"
     else:
         wheel_chair = "No Information"
-    return f"Nearest MBTA stop: {name}, Wheelchair accessibility: {wheel_chair}"
+    return name, wheel_chair
 
 
 ### Combine all functions to create a tool that takes a place name or address as input, finds its latitude and longitude, and returns the nearest MBTA stop and whether it is wheelchair accessible ###
