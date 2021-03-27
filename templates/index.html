@@ -2,22 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
 </head>
+<style>
+    .content {
+  max-width: 60%;
+  margin: auto;
+    }
+    h1{
+        color: maroon;
+    }
+</style>
 <body>
-    <h1>MBTA HELPER</h1>
-    <br>
-    <h2>hello, we will help you find the nearest MBTA station </h2>
-    <a href="{{ url_for('get_stop') }}">Find the closest Station</a>
-    <form method="POST" name="">
-        <p>Please enter your current location:</p>
-        <p> 
-        <input type="text" size="4" name="location" />
-        </p>
-        <p>
-        <input type="submit" value="Submit" />
-
+    <div class="content">
+        <h1>MBTA HELPER</h1>
+        <h2>Hi there! This website helps you find the nearest MBTA station. </h2>
+    
+        <form method="POST" name="" action='{{ url_for('find') }}'>
+            {% if error %}
+            <p style="color:red">The place you entered does not have an MBTA station nearby.</p>
+            <a href="{{ url_for('index') }}">Back to search</a>
+            {% endif %}
+            <p>
+                Please enter your current location:
+            </p>
+            <p> 
+                <input type="text" size="4" name="location" />
+            </p>
+            <p>
+                <input type="submit" value="Submit" />
+            </p>
+        </form>
+    </div>
 </body>
 </html>
