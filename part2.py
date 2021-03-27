@@ -6,37 +6,74 @@
 
 # # ##########
 
+# from flask import Flask, render_template, request
+
+# from mbta_helper import find_stop_near
+
+
+# app = Flask(__name__)
+
+
+# @app.route("/")
+# def index():
+#     return render_template("index.html")
+
+
+# @app.route("/mbta_helper/", methods=["GET", "POST"])
+# def get_stop():
+#     if request.method == "POST":
+#         place_name = str(request.form["location"])
+#         stop, is_accessible = find_stop_near(place_name)
+#         accessibility = ""
+#         if stop:
+#             if is_accessible == "accessible":
+#                 accessibility = "The station is accessible to wheelchairs"
+#             elif is_accessible == "inaccessible":
+#                 accessibility = "The station is not accessible to wheelchairs"
+#             else:
+#                 accessibility = "The station does not have accessibility data available"
+#             return render_template("mbta_results.html", place_name=place_name, stop=stop, accessibility=accessibility)
+#         else:
+#             return render_template("mbta_helper.html", error=True)
+#     return render_template("mbta_helper.html", error=None)
+
+
+# if __name__ == "__main__":
+#     app.run(debug=True)
+
+
 from flask import Flask, render_template, request
 
-from mbta_helper import find_stop_near
+from mbta_helper_demo2 import find_stop_near
 
-
-app = Flask(__name__)
-
+app = Flask(__name__, template_folder="templates")
 
 @app.route("/")
 def index():
     return render_template("index.html")
+    
 
 
-@app.route("/mbta_helper/", methods=["GET", "POST"])
-def get_stop():
+@app.route("/hello/")
+@app.route("/hello/<name>")
+def hello(name=None):
+    if name:
+        name = name.upper()
+    return render_template("hello.html", name=name)
+
+@app.route("/find/", methods=["GET", "POST"])
+def find():
+    # modify this function so it renders different templates for POST and GET method.
+    # aka. it displays the form when the method is 'GET'; it displays the results when
+    # the method is 'POST' and the data is correctly processed.
     if request.method == "POST":
-        place_name = str(request.form["location"])
-        stop, is_accessible = find_stop_near(place_name)
-        accessibility = ""
-        if stop:
-            if is_accessible == "accessible":
-                accessibility = "The station is accessible to wheelchairs"
-            elif is_accessible == "inaccessible":
-                accessibility = "The station is not accessible to wheelchairs"
-            else:
-                accessibility = "The station does not have accessibility data available"
-            return render_template("mbta_results.html", place_name=place_name, stop=stop, accessibility=accessibility)
+        requestedplace = str(request.form["place"])
+        requestedstop = find_stop_near(requestedplace)
+        if requestedstop:
+            return render_template(
+                "found.html", requestedstop=requestedstop, requestedplace=requestedplace
+            )
         else:
-            return render_template("mbta_helper.html", error=True)
-    return render_template("mbta_helper.html", error=None)
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
+            return render_template("find.html", error=True)
+    return render_template("find.html", error=None)
+    
