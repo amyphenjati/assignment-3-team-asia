@@ -88,12 +88,12 @@ def main():
     # url = f"{MAPQUEST_BASE_URL}?key={MAPQUEST_API_KEY}&location=Babson%20College"
     # pprint(get_json(url))
 
-    # location = input("Please enter a place:")
+    location = input("Please enter a place:")
     # print(get_lat_long(location))
     # pprint(get_nearest_station(42.34461, -71.10411)) # fenway park
 
-    # print(find_stop_near(location))
-    print(find_stop_near("Boston Common"))
+    print(find_stop_near(location))
+    # print(find_stop_near("Boston Common"))
 
 
 if __name__ == "__main__":
