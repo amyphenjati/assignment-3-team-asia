@@ -44,7 +44,7 @@
 
 from flask import Flask, render_template, request
 
-from mbta_helper_demo2 import find_stop_near
+from mbta_finder import find_stop_near
 
 app = Flask(__name__, template_folder="templates")
 
@@ -53,13 +53,6 @@ def index():
     return render_template("index.html")
     
 
-
-@app.route("/hello/")
-@app.route("/hello/<name>")
-def hello(name=None):
-    if name:
-        name = name.upper()
-    return render_template("hello.html", name=name)
 
 @app.route("/find/", methods=["GET", "POST"])
 def find():
@@ -76,4 +69,3 @@ def find():
         else:
             return render_template("find.html", error=True)
     return render_template("find.html", error=None)
-    
