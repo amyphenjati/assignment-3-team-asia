@@ -5,7 +5,7 @@ from mbta_helper import find_stop_near
 
 app = Flask(__name__, template_folder="templates")
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/", methods=["POST"])
 def find():
     # modify this function so it renders different templates for POST and GET method.
     # aka. it displays the form when the method is 'GET'; it displays the results when
