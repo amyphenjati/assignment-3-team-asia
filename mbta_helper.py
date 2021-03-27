@@ -66,7 +66,7 @@ def get_nearest_station(latitude, longitude):
     """
     url_MBTA = f"{MBTA_BASE_URL}?api_key={MBTA_API_KEY}&filter[latitude]={latitude}&filter[longitude]={longitude}&sort=distance"
     response_data_MBTA = get_json(url_MBTA)
-
+    
     # try:
     #     station = response_data_MBTA["data"][0]["attributes"]["name"]
     #     wheelchair = response_data_MBTA["data"][0]["attributes"]["wheelchair_boarding"]
@@ -109,11 +109,11 @@ def main():
     """
     You can test all the functions here
     """
-    # print(get_json(url))
-    location = input("Please enter a place:")
+    pprint(get_json(url))
+    location = "Fenway Park" 
     print(get_lat_long(location))
-    print(get_nearest_station(42.29822, -71.2654)) # babson college
-    print(find_stop_near(location))
+    print(get_nearest_station(39.66263, -89.70723)) # fenway park
+    # print(find_stop_near(location)) 
 
 if __name__ == '__main__':
     main()
